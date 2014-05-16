@@ -31,7 +31,7 @@ module Dimensionality
     end
 
     def +(other)
-      #raise TypeError, "can't add #{value.class} to Length" unless Length === value
+      raise TypeError, "can't add #{other.class} to Length" unless Length === other
       self.class.new(si_value + other.si_value).to(units)
     end
 

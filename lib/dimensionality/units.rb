@@ -6,10 +6,9 @@ module Dimensionality
 
     def Length(value, units)
       case value
-      when Length   then value.to(units)
-      when Numeric  then Length.new value, units
+      when Length then value.to(units)
       else
-        raise TypeError, "can't convert #{value.class} into Length"
+        Length.new value, units
       end
     end
 

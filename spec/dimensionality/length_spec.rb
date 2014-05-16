@@ -3,6 +3,7 @@ require 'dimensionality/length'
 
 module Dimensionality
   describe Length do
+
     describe '::CONVERSIONS' do
       it 'should contain the correct conversions' do
         expect(Length::CONVERSIONS).to eq(
@@ -74,15 +75,16 @@ module Dimensionality
     end
 
     describe '#+' do
+      require 'dimensionality/units'
+      include Units
+
       it 'should handle differing units' do
-        a = Length.new(2, :meters)
-        b = Length.new(5, :centimeters)
-        expect(a + b).to eql Length.new('2.05', :meters)
-        expect(b + a).to eql Length.new(205, :centimeters)
+        expect(Meter(2) + Centimeter(5)).to eql Meter('2.05')
+        expect(Centimeter(5) + Meter(2)).to eql Centimeter(205)
       end
 
       it 'should raise error on incompatible types' do
-
+        expect { Meter(2) + 1 }.to raise_error TypeError, "can't add Fixnum to Length"
       end
     end
 
