@@ -79,12 +79,12 @@ module Dimensionality
       include Units
 
       it 'should handle differing units' do
-        expect(Meter(2) + Centimeter(5)).to eql Meter('2.05')
-        expect(Centimeter(5) + Meter(2)).to eql Centimeter(205)
+        expect(Meters(2) + Centimeters(5)).to eql Meters('2.05')
+        expect(Centimeters(5) + Meters(2)).to eql Centimeters(205)
       end
 
       it 'should raise error on incompatible types' do
-        expect { Meter(2) + 1 }.to raise_error TypeError, "can't add Fixnum to Length"
+        expect { Meters(2) + 1 }.to raise_error TypeError, "can't add Fixnum to Length"
       end
     end
 
